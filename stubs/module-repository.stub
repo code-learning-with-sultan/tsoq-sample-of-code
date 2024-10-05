@@ -1,0 +1,88 @@
+<?php
+
+namespace {{ namespace }}\Repositories;
+
+use App\Helpers\ApiHelper;
+use App\Interfaces\BaseRepository;
+
+// Model
+use {{ module }};
+use Exception;
+use {{ namespace }}\Actions\Validations;
+
+class {{ module }}Repository implements BaseRepository
+{
+    use Validations;
+    public function all()
+    {
+        try{
+            $models = {{ module }}::query()->paginate(10);
+            return ApiHelper::respondOk($models);
+        }catch(Exception $e){
+            return ApiHelper::respondInternalError($e->getMessage());
+        }
+
+    }
+
+    public function find(string $id)
+    {
+        try{
+            $model = {{ module }}::query()->find($id);
+            if(!$model){
+                return ApiHelper::respondNotFound();
+            }
+            return ApiHelper::respondOk($model);
+        }catch(Exception $e){
+            return ApiHelper::respondInternalError($e->getMessage());
+        }
+    }
+
+    public function store(array $data)
+    {
+        try{
+            $validationErrors = $this->validateStoreRequest($data);
+            if(!empty($validationErrors)){
+                return ApiHelper::respondValidationError($validationErrors);
+            }
+            $model = {{ module }}::create($data);
+            return ApiHelper::respondOk($model);
+        }catch(Exception $e){
+            return ApiHelper::respondInternalError($e->getMessage());
+        }
+
+    }
+
+    public function update($id,array $data)
+    {
+        try{
+            $validationErrors = $this->validateUpdateRequest($data);
+            if(!empty($validationErrors)){
+                return ApiHelper::respondValidationError($validationErrors);
+            }
+            $model = {{ module }}::query()->find($id);
+            if(!$model){
+                return ApiHelper::respondNotFound();
+            }
+            unset($data['_method']);
+            $model->update($data);
+            return ApiHelper::respondOk($model);
+        }catch(Exception $e){
+            return ApiHelper::respondInternalError($e->getMessage());
+        }
+
+    }
+
+    public function destroy($id)
+    {
+        try{
+            $model = {{ module }}::query()->find($id);
+            if(!$model){
+                return ApiHelper::respondNotFound();
+            }
+            $model->delete();
+            return ApiHelper::respondOk();
+        }catch(Exception $e){
+            return ApiHelper::respondInternalError($e->getMessage());
+        }
+    }
+}

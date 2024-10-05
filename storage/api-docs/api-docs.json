@@ -1,0 +1,65 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "L5 OpenApi",
+        "description": "L5 Swagger OpenApi description",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/register": {
+            "post": {
+                "description": "Register a new store",
+                "operationId": "ad989dfc281ca977bf26cb41000a22cd",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Store owner name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "Store owner email",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "Store owner password",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "store",
+                        "in": "query",
+                        "description": "Store name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Store has been created successfully"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    },
+                    "402": {
+                        "description": "Validation error"
+                    }
+                }
+            }
+        }
+    }
+}
