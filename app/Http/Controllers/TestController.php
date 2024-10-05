@@ -17,7 +17,8 @@ class TestController extends Controller
      *      description="L5 Swagger OpenApi description"
      * )
      */
-    public function index(){
+    public function index()
+    {
         $data = [
             'name' => 'Mohammed',
             'email' => 'mohammed@me.com',

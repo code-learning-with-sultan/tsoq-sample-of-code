@@ -12,12 +12,12 @@ class GeneralSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run($registerForm=false, $tenantID=NULL): void
+    public function run($registerForm = false, $tenantID = NULL): void
     {
         // run loyality point seeder
         $loyalityPointSeeder = new LoyalityPointSeeder();
         $warehouseSeeder = new WarehouseSeeder();
-        if($registerForm){
+        if ($registerForm) {
             $loyalityPointSeeder->run();
             $warehouseSeeder->run();
         } else {

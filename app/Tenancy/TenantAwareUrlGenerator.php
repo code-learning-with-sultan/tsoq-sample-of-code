@@ -11,10 +11,10 @@ class TenantAwareUrlGenerator extends DefaultUrlGenerator
         $relativeMediaPath = $this->getPathRelativeToRoot();
         $appUrl = config('app.url');
         $url = $appUrl . '/storage';
-        if($tenantId = tenant()->id){
+        if ($tenantId = tenant()->id) {
             $url .= '/tenant' . $tenantId;
         }
-        $url .=  '/' . $relativeMediaPath;
+        $url .= '/' . $relativeMediaPath;
         return $url;
     }
 }

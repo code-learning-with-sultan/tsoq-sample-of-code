@@ -28,7 +28,7 @@ Route::middleware([
 ])->group(function () {
 
 
-    Route::get('users',function(){
+    Route::get('users', function () {
         return ApiHelper::respondOk(User::all());
     });
 
@@ -36,7 +36,7 @@ Route::middleware([
 });
 
 
-Route::get('test',function(){
+Route::get('test', function () {
     return [
         'success' => true,
         'headers' => request()->headers->all(),

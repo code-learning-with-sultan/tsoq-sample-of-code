@@ -1,0 +1,3 @@
+-   `tsoqcomsa_tsoq.sql` this file should not be in the project folder.
+-   files linting issues.
+-

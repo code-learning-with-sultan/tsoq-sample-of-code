@@ -4,7 +4,8 @@ namespace App\Traits;
 
 use Carbon\Carbon;
 
-trait FormatTimestamps {
+trait FormatTimestamps
+{
 
     public function getCreatedAtAttribute($value)
     {

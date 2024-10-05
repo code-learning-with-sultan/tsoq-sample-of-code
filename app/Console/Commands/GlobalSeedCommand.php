@@ -34,7 +34,7 @@ class GlobalSeedCommand extends Command
         $databases = DB::select("SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME LIKE 'tenant%'");
         $this->info('Retreiving databases');
         foreach ($databases as $database) {
-            if($database->SCHEMA_NAME != 'tenanttest'){
+            if ($database->SCHEMA_NAME != 'tenanttest') {
                 $this->info('Removing database ' . $database->SCHEMA_NAME);
                 DB::statement("DROP DATABASE " . $database->SCHEMA_NAME);
                 $this->info('Database ' . $database->SCHEMA_NAME . ' removed');
